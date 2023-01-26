@@ -1,4 +1,4 @@
-#Tic Tac Toe: AI Final Project
+# Tic Tac Toe: AI Final Project
 
 First you need to clone the project:
 ```bash
@@ -27,7 +27,7 @@ If AI and Human are versus each other, you have to choose AI level:
 
 ![Board & Coordinates](img/xo.jpg)
 
-###Evaluation Function:
+### Evaluation Function:
 It has 3 possible values:
 - -1 if player that seeks minimum wins
 - 0 if it's a draw
@@ -35,9 +35,9 @@ It has 3 possible values:
 
 This evaluation function is  common for all games in which it's possible to search the whole tree, all the way down to leave.
 
-<mark>**Winning against this kind of AI is impossible. If we assume that both player and AI are playing optimally, the game will always be a tie. Since the AI always plays optimally, if we slip up, we'll lose.**</mark>
+<mark>***Winning against this kind of AI is impossible. If we assume that both player and AI are playing optimally, the game will always be a tie. Since the AI always plays optimally, if we slip up, we'll lose.***</mark>
 
-###MiniMax Vs Alpha-Beta:
+### MiniMax Vs Alpha-Beta:
 | Algorithm | Min Time | Max Time |
 | ------------- | ------------- | ------------- |
 | Minimax  | 4.57s  | 5.34s  |
