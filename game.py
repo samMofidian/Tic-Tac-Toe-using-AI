@@ -51,7 +51,7 @@ class Game:
             for j in range(3):
                 self.board[i][j] = '.'
 
-    def is_valid(self, x, y):
+    def is_move_valid(self, x, y):
         """
         check if move is valid
         :param x: coordinate
@@ -318,7 +318,7 @@ class Game:
                         px = int(input('Insert the X coordinate: '))
                         py = int(input('Insert the Y coordinate: '))
                         # make move
-                        if self.is_valid(px, py):
+                        if self.is_move_valid(px, py):
                             self.board[px][py] = 'X'
                             self.turn = 'O'
                             break
@@ -367,7 +367,7 @@ class Game:
                         px = int(input('Insert the X coordinate: '))
                         py = int(input('Insert the Y coordinate: '))
                         # make move
-                        if self.is_valid(px, py):
+                        if self.is_move_valid(px, py):
                             self.board[px][py] = 'O'
                             self.turn = 'X'
                             break
@@ -394,7 +394,7 @@ class Game:
                         px = int(input('Insert the X coordinate: '))
                         py = int(input('Insert the Y coordinate: '))
                         # make move
-                        if self.is_valid(px, py):
+                        if self.is_move_valid(px, py):
                             self.board[px][py] = 'X'
                             self.turn = 'O'
                             break
@@ -414,7 +414,7 @@ class Game:
                         px = int(input('Insert the X coordinate: '))
                         py = int(input('Insert the Y coordinate: '))
                         # make move
-                        if self.is_valid(px, py):
+                        if self.is_move_valid(px, py):
                             self.board[px][py] = 'O'
                             self.turn = 'X'
                             break
@@ -459,10 +459,12 @@ class Game:
         :return:
         """
         if self._playing_state():
+            # reset board to the initial state
             self.reset_board()
+            # reset turn to initial one
             self.turn = self.game_starter
-            print("If you want to play again enter <p> otherwise enter any key to quit: ")
-            user_input = input()
+            # play again or quit
+            user_input = input("If you want to play again enter <p> otherwise enter any key to quit: ")
             if user_input == 'p':
                 return self.play_minimax()
             else:
@@ -512,7 +514,7 @@ class Game:
                         px = int(input('Insert the X coordinate: '))
                         py = int(input('Insert the Y coordinate: '))
                         # make move
-                        if self.is_valid(px, py):
+                        if self.is_move_valid(px, py):
                             self.board[px][py] = 'X'
                             self.turn = 'O'
                             break
@@ -561,7 +563,7 @@ class Game:
                         px = int(input('Insert the X coordinate: '))
                         py = int(input('Insert the Y coordinate: '))
                         # make move
-                        if self.is_valid(px, py):
+                        if self.is_move_valid(px, py):
                             self.board[px][py] = 'O'
                             self.turn = 'X'
                             break
@@ -588,7 +590,7 @@ class Game:
                         px = int(input('Insert the X coordinate: '))
                         py = int(input('Insert the Y coordinate: '))
                         # make move
-                        if self.is_valid(px, py):
+                        if self.is_move_valid(px, py):
                             self.board[px][py] = 'X'
                             self.turn = 'O'
                             break
@@ -608,7 +610,7 @@ class Game:
                         px = int(input('Insert the X coordinate: '))
                         py = int(input('Insert the Y coordinate: '))
                         # make move
-                        if self.is_valid(px, py):
+                        if self.is_move_valid(px, py):
                             self.board[px][py] = 'O'
                             self.turn = 'X'
                             break
