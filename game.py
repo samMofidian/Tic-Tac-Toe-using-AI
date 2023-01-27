@@ -14,6 +14,8 @@ class Game:
             ['.', '.', '.']
         ]
         self.turn = turn
+        # use to reset turn
+        self.game_starter = turn
 
     def __str__(self):
         """
@@ -300,8 +302,9 @@ class Game:
         if game_mode == 1:
             lvl = self._set_level_minimax()
             while True:
-                if self._playing_state():
-                    sys.exit()
+                # check if game is finished and what to do next
+                self._end_play_minimax()
+
                 if self.turn == 'X':
                     while True:
                         # calculate time of evaluating and its' value
@@ -333,12 +336,14 @@ class Game:
                     print(f'Move: X = {ax}, Y = {ay}')
                     self.board[ax][ay] = 'O'
                     self.turn = 'X'
+
         # AI vs Human(ai is the game starter)
         if game_mode == 2:
             lvl = self._set_level_minimax()
             while True:
-                if self._playing_state():
-                    sys.exit()
+                # check if game is finished and what to do next
+                self._end_play_minimax()
+
                 if self.turn == 'X':
                     # calculate time of evaluating and its' value
                     start = time.time()
@@ -369,11 +374,13 @@ class Game:
                         # invalid move
                         else:
                             print('The move is not valid! Try again.')
+
         # Human vs Human
         elif game_mode == 3:
             while True:
-                if self._playing_state():
-                    sys.exit()
+                # check if game is finished and what to do next
+                self._end_play_minimax()
+
                 if self.turn == 'X':
                     while True:
                         # calculate time of evaluating and its' value
@@ -414,11 +421,13 @@ class Game:
                         # invalid move
                         else:
                             print('The move is not valid! Try again.')
+
         # AI vs AI
         elif game_mode == 4:
             while True:
-                if self._playing_state():
-                    sys.exit()
+                # check if game is finished and what to do next
+                self._end_play_minimax()
+
                 if self.turn == 'X':
                     # calculate time of evaluating and its' value
                     start = time.time()
@@ -443,6 +452,21 @@ class Game:
         else:
             print("Invalid input")
             self.play_minimax()
+
+    def _end_play_minimax(self):
+        """
+        check if game is finished and what happen next(used in play_minimax)
+        :return:
+        """
+        if self._playing_state():
+            self.reset_board()
+            self.turn = self.game_starter
+            print("If you want to play again enter <p> otherwise enter any key to quit: ")
+            user_input = input()
+            if user_input == 'p':
+                return self.play_minimax()
+            else:
+                sys.exit()
 
     def _set_level_minimax(self):
         """
