@@ -496,8 +496,9 @@ class Game:
         if game_mode == 1:
             lvl = self._set_level_alpha_beta()
             while True:
-                if self._playing_state():
-                    sys.exit()
+                # check if game is finished and what to do next
+                self._end_play_minimax()
+
                 if self.turn == 'X':
                     while True:
                         # calculate time of evaluating and its' value
@@ -529,12 +530,14 @@ class Game:
                     print(f'Move: X = {ax}, Y = {ay}')
                     self.board[ax][ay] = 'O'
                     self.turn = 'X'
+
         # AI vs Human(ai is the game starter)
         if game_mode == 2:
             lvl = self._set_level_alpha_beta()
             while True:
-                if self._playing_state():
-                    sys.exit()
+                # check if game is finished and what to do next
+                self._end_play_minimax()
+
                 if self.turn == 'X':
                     # calculate time of evaluating and its' value
                     start = time.time()
@@ -565,11 +568,13 @@ class Game:
                         # invalid move
                         else:
                             print('The move is not valid! Try again.')
+
         # Human vs Human
         elif game_mode == 3:
             while True:
-                if self._playing_state():
-                    sys.exit()
+                # check if game is finished and what to do next
+                self._end_play_minimax()
+
                 if self.turn == 'X':
                     while True:
                         # calculate time of evaluating and its' value
@@ -613,8 +618,9 @@ class Game:
         # AI vs AI
         elif game_mode == 4:
             while True:
-                if self._playing_state():
-                    sys.exit()
+                # check if game is finished and what to do next
+                self._end_play_minimax()
+
                 if self.turn == 'X':
                     # calculate time of evaluating and its' value
                     start = time.time()
@@ -639,6 +645,23 @@ class Game:
         else:
             print("Invalid input")
             self.play_alpha_beta()
+
+    def _end_play_alpha_beta(self):
+        """
+        check if game is finished and what happen next(used in play_alpha_beta)
+        :return:
+        """
+        if self._playing_state():
+            # reset board to the initial state
+            self.reset_board()
+            # reset turn to initial one
+            self.turn = self.game_starter
+            # play again or quit
+            user_input = input("If you want to play again enter <p> otherwise enter any key to quit: ")
+            if user_input == 'p':
+                return self.play_alpha_beta()
+            else:
+                sys.exit()
 
     def _set_level_alpha_beta(self):
         """
