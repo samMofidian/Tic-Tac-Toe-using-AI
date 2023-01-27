@@ -1,5 +1,6 @@
 import sys
 import time
+from random import randint
 
 
 class Game:
@@ -41,6 +42,19 @@ class Game:
                 print(f'{self.board[i][j]}', end=" ")
             print()
         print('-'*20)
+
+    def is_board_empty(self):
+        """
+        check if board is empty or not
+        :return: True if empty
+        """
+        if self.board == [
+            ['.', '.', '.'],
+            ['.', '.', '.'],
+            ['.', '.', '.']
+        ]:
+            return True
+        return False
 
     def reset_board(self):
         """
@@ -131,9 +145,14 @@ class Game:
         :param max_depth: maximum depth algorithm would traverse
         :return:
         """
+        # first move is randomly chosen(not always (0, 0))
+        if self.is_board_empty():
+            return 0, randint(0, 2), randint(0, 2)
+
         # control algorithm level
         if depth > max_depth:
             return 0, 0, 0
+
         # worse than the worst case
         max_val = -2
         # init x and y(coordinates)
@@ -141,6 +160,7 @@ class Game:
         y = None
         # check if game is finished
         result = self.is_end()
+        # first return is evaluation function value, second and third are move coordinates
         if result == min_player:
             return -1, 0, 0
         elif result == max_player:
@@ -172,9 +192,14 @@ class Game:
         :param max_depth: maximum depth algorithm would traverse
         :return:
         """
+        # first move is randomly chosen(not always (0, 0))
+        if self.is_board_empty():
+            return 0, randint(0, 2), randint(0, 2)
+
         # control algorithm level
         if depth > max_depth:
             return 0, 0, 0
+
         # worse than the worst case
         min_val = 2
         # init x and y(coordinates)
@@ -182,6 +207,7 @@ class Game:
         y = None
         # check if game is finished
         result = self.is_end()
+        # first return is evaluation function value, second and third are move coordinates
         if result == min_player:
             return -1, 0, 0
         elif result == max_player:
@@ -213,9 +239,14 @@ class Game:
         :param max_depth: maximum depth algorithm would traverse
         :return:
         """
+        # first move is randomly chosen(not always (0, 0))
+        if self.is_board_empty():
+            return 0, randint(0, 2), randint(0, 2)
+
         # control algorithm level
         if depth > max_depth:
             return 0, 0, 0
+
         # worse than the worst case
         max_val = -2
         # init x and y(coordinates)
@@ -256,9 +287,14 @@ class Game:
         :param max_depth: maximum depth algorithm would traverse
         :return:
         """
+        # first move is randomly chosen(not always (0, 0))
+        if self.is_board_empty():
+            return 0, randint(0, 2), randint(0, 2)
+
         # control algorithm level
         if depth > max_depth:
             return 0, 0, 0
+
         # worse than the worst case
         min_val = 2
         # init x and y(coordinates)
