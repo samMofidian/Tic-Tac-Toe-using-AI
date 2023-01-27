@@ -27,6 +27,8 @@ If AI and Human are versus each other, you have to choose AI level:
 
 ![Board & Coordinates](img/xo.jpg)
 
+*initial move chosen by algorithm is not always (0, 0) coordinates, actually it's chosen randomly.*
+
 ### Evaluation Function:
 It has 3 possible values:
 - -1 if player that seeks minimum wins

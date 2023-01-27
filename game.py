@@ -239,6 +239,9 @@ class Game:
         :param max_depth: maximum depth algorithm would traverse
         :return:
         """
+        # alpha and beta value
+        # print(f'(alpha: {alpha}, beta: {beta})')
+
         # first move is randomly chosen(not always (0, 0))
         if self.is_board_empty():
             return 0, randint(0, 2), randint(0, 2)
@@ -271,6 +274,7 @@ class Game:
                         y = j
                     self.board[i][j] = '.'
                     if max_val >= beta:
+                        # announce beta-cut
                         # print("beta cut")
                         return max_val, x, y
                     if max_val > alpha:
@@ -287,6 +291,9 @@ class Game:
         :param max_depth: maximum depth algorithm would traverse
         :return:
         """
+        # alpha and beta value
+        # print(f'(alpha: {alpha}, beta: {beta})')
+
         # first move is randomly chosen(not always (0, 0))
         if self.is_board_empty():
             return 0, randint(0, 2), randint(0, 2)
@@ -319,6 +326,7 @@ class Game:
                         y = j
                     self.board[i][j] = '.'
                     if min_val <= alpha:
+                        # announce alpha-cut
                         # print("alpha cut")
                         return min_val, x, y
                     if min_val < beta:
